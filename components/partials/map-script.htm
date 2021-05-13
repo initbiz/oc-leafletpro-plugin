@@ -1,6 +1,9 @@
 {% put scripts %}
 <script>
-    var {{ mapVar }} = L.map('{{ __SELF__ ~ '-container' }}').setView([{{ __SELF__.centerLatLon }}], {{ __SELF__.initialZoom }});
+    var {{ mapVar }} = L.map('{{ __SELF__ ~ '-container' }}', {
+        dragging: !L.Browser.mobile,
+        tap: !L.Browser.mobile
+    }).setView([{{ __SELF__.centerLatLon }}], {{ __SELF__.initialZoom }});
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '{% partial __SELF__ ~ "::attribution" %}',
